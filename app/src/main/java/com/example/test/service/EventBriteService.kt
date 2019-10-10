@@ -1,6 +1,6 @@
-package com.example.test.Service
+package com.example.test.service
 
-import com.example.test.Model.model
+import com.example.test.model.model
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

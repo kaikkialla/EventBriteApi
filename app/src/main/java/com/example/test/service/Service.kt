@@ -1,9 +1,8 @@
-package com.example.test.Service
+package com.example.test.service
 
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
 import com.google.gson.GsonBuilder
-import com.google.gson.Gson
 
 
 object Service {

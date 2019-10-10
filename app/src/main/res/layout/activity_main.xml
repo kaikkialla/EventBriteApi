@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity"
+    android:id="@+id/n">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
-        android:background="#440000"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

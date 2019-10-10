@@ -41,4 +41,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'org.web3j:core:4.1.0-android'
+
+    implementation 'com.karumi:dexter:6.0.0'
 }
