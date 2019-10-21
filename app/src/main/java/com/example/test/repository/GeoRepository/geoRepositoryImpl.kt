@@ -12,6 +12,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import android.Manifest.permission
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.*
 
 
@@ -52,6 +54,7 @@ class geoRepositoryImpl(
     }
 
     override fun update(coordinates: geoModel?) {
+        Toast.makeText(activity, "${coordinates?.latitude} : ${coordinates?.longitude} \n ${coordinates?.city}", Toast.LENGTH_LONG).show()
         this.coordinates.value = coordinates
     }
 
