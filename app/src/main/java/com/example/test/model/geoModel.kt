@@ -1,6 +1,6 @@
 package com.example.test.model
 
-class geoModel(
+class location(
     var city: String? = null,
     var longitude: Double? = null,
     var latitude: Double? = null

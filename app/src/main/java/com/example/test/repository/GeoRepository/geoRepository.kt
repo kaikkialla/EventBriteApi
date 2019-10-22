@@ -1,13 +1,13 @@
 package com.example.test.repository.GeoRepository
 
 import androidx.lifecycle.LiveData
-import com.example.test.model.geoModel
+import com.example.test.model.location
 
 interface geoRepository {
 
-    fun getCoordinates(): LiveData<geoModel>
+    fun getCoordinates(): LiveData<location>
 
     fun subscribe()
 
-    fun update(coordinates: geoModel?)
+    fun update(coordinates: location?)
 }

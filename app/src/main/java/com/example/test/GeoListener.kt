@@ -6,7 +6,8 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
-import com.example.test.model.geoModel
+import com.example.test.model.location
+
 import com.example.test.repository.GeoRepository.geoRepository
 import java.io.IOException
 import java.util.*
@@ -36,7 +37,7 @@ class GeoListener(
         }
 
         repository.update(
-            geoModel(
+            location(
                 cityName,
                 longitude,
                 latitude

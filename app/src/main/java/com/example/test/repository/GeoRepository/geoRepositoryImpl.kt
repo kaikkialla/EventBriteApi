@@ -1,20 +1,20 @@
 package com.example.test.repository.GeoRepository
 
-import android.content.Context
-import android.location.LocationManager
-import com.example.test.GeoListener
-import com.example.test.model.geoModel
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import android.Manifest.permission
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.util.Log
+import android.content.Context
+import android.location.LocationManager
 import android.widget.Toast
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.test.GeoListener
+import com.example.test.model.location
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 
 
 class geoRepositoryImpl(
@@ -45,15 +45,15 @@ class geoRepositoryImpl(
 
 
 
-    private val coordinates: MutableLiveData<geoModel> = MutableLiveData()
+    private val coordinates: MutableLiveData<location> = MutableLiveData()
 
 
 
-    override fun getCoordinates() : LiveData<geoModel> {
+    override fun getCoordinates() : LiveData<location> {
         return coordinates
     }
 
-    override fun update(coordinates: geoModel?) {
+    override fun update(coordinates: location?) {
         Toast.makeText(activity, "${coordinates?.latitude} : ${coordinates?.longitude} \n ${coordinates?.city}", Toast.LENGTH_LONG).show()
         this.coordinates.value = coordinates
     }

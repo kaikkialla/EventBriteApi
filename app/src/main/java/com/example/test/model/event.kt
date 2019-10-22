@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
-public class model2 {
+public class event {
 
     @SerializedName("events")
     @Expose

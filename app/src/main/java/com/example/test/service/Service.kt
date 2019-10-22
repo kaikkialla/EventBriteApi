@@ -1,9 +1,11 @@
 package com.example.test.service
 
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Retrofit
 import com.google.gson.GsonBuilder
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
+
+const val baseUrl = "https://www.eventbriteapi.com/v3/events/"
 
 object Service {
     var etherscanService: EventBriteService? = null
@@ -14,7 +16,7 @@ object Service {
             if (etherscanService == null) {
                 val gson = GsonBuilder().setLenient().create()
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("https://www.eventbriteapi.com/v3/events/")
+                    .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build()
 

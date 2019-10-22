@@ -1,31 +1,43 @@
 package com.example.test.repository.DataRepository
 
 import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.test.model.geoModel
-import com.example.test.model.model2
+import androidx.lifecycle.Observer
+import com.example.test.model.event
+import com.example.test.model.location
+import com.example.test.repository.GeoRepository.geoRepository
 import com.example.test.service.Service
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class dataRepositoryImpl : dataRepository {
+class dataRepositoryImpl(
+    val activity: FragmentActivity,
+    val geoRepository: geoRepository
+) : dataRepository {
 
 
-    override fun getList(coordinates: geoModel): LiveData<model2> {
-        loadByCoordinates(coordinates)
-        return list
+    override fun subscribe() {
+        geoRepository.getCoordinates().observe(activity, Observer {
+            loadByCity(it)
+        })
     }
 
-    val list: MutableLiveData<model2> = MutableLiveData()
+
+    override fun list(): LiveData<event> = list
+
+    val list: MutableLiveData<event> = MutableLiveData()
 
 
 
-    fun loadByCity(coordinates: geoModel) {
-        Service.etherscanServices?.getEvents("la", "50km")!!
-            .enqueue(object : Callback<model2> {
-                override fun onResponse(call: Call<model2>, response: Response<model2>) {
+
+
+    fun loadByCity(coordinates: location) {
+        Service.etherscanServices?.getEvents(coordinates.city!!, "50km")!!
+            .enqueue(object : Callback<event> {
+                override fun onResponse(call: Call<event>, response: Response<event>) {
                     Log.e("fasofa", "on response")
                     if (response.body() != null) {
                         list.value = response.body()
@@ -33,22 +45,22 @@ class dataRepositoryImpl : dataRepository {
                     }
                 }
 
-                override fun onFailure(call: Call<model2>, t: Throwable) { }
+                override fun onFailure(call: Call<event>, t: Throwable) { }
             })
     }
 
 
-    fun loadByCoordinates(coordinates: geoModel) {
+    fun loadByCoordinates(coordinates: location) {
         Service.etherscanServices?.getEvents(coordinates.longitude!!, coordinates.longitude!!, "50km")!!
-            .enqueue(object : Callback<model2> {
-                override fun onResponse(call: Call<model2>, response: Response<model2>) {
+            .enqueue(object : Callback<event> {
+                override fun onResponse(call: Call<event>, response: Response<event>) {
                     if (response.body() != null) {
                         list.value = response.body()
                         Log.e("fasofa", "on response")
                     }
                 }
 
-                override fun onFailure(call: Call<model2>, t: Throwable) { }
+                override fun onFailure(call: Call<event>, t: Throwable) { }
             })
     }
 }
